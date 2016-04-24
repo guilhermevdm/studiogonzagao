@@ -24,6 +24,7 @@
 	"menu.logout": "Logout",
 	"menu.project": "Project",
 	"menu.bands": "Bands",
+	"menu.genres": "Genres",
 	"index.welcome": "Your virtual vinyl room",
 	"index.featured1.heading": "Maintain your collection organized",
 	"index.featured1.text": "Keep track of every record of your collection and maintain everything in your control",
@@ -37,5 +38,12 @@
 	"bands.empty": "Band list is empty for you &#9785;",
 	"bands.deleted": "The band was successfully removed.",
 	"bands.updated": "Band {{ name }} successfully updated!",
-	"bands.notfound": "Your query for {{ query }} has no match."
+	"bands.notfound": "Your query for {{ query }} has no match.",
+	"genres.name": "Genres",
+	"genres.statistics": "Statistics",
+	"genres.empty": "Genre list is empty for you &#9785;",
+	"genres.added": "Genre {{name}} added!",
+	"genres.deleted": "The genre was successfully removed.",
+	"genres.updated": "Genre {{ name }} successfully updated!",
+	"genres.notfound": "Your query for {{ query }} has no match."
 }

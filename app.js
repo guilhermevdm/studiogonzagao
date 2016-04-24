@@ -16,6 +16,7 @@ var indexController = require('./routes/index');
 var userController = require('./routes/users');
 var loginController = require('./routes/login');
 var bandsController = require('./routes/bands');
+var genresController = require('./routes/genres');
 
 // Middleweares
 var messages = require("./middlewares/messages");
@@ -62,6 +63,7 @@ app.use('/', indexController);
 app.use('/login', loginController);
 app.use('/user', userController);
 app.use('/bands', bandsController);
+app.use('/genres', genresController);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

@@ -1,0 +1,44 @@
+extends ../layout/layout
+
+block content
+	.container
+		.row
+			.col-xs-6
+				h2 #{__("menu.genres")}
+			.col-xs-6.text-right
+				h2
+					a.btn.btn-success(href='/genres/add') #{__("system.add")}
+		.row
+			.col-xs-12
+				form(action="/genres/search", method="get")
+					.input-group
+						input.form-control(type='text', name="genre.name",placeholder=__("genres.name"))
+						span.input-group-btn
+							button.btn.btn-info(type='submit') #{__("system.search")}
+		.row
+			.col-xs-12
+				table.table.table-bordered.table-striped.table-hover.table-responsive
+					thead
+						tr
+							th #{__("genres.name")}
+							th #{__("genres.statistics")}
+							th #{__("system.actions")}
+					tbody
+						if genres.length == 0
+							tr
+								td(colspan="3")
+									p.text-center !{__("genres.empty")}
+						each genre in genres
+							tr
+								td !{ genre.name }
+								td N/a
+								td
+									form.action.form-inline(action="genres/edit", method="post")
+										input(type="hidden", value=genre.id name="genre.id")
+										button.btn.btn-link(type="submit")
+											span.glyphicon.glyphicon-edit(aria-hidden='true')
+									form.action.form-inline(action="genres/delete", method="post")
+										input(type="hidden", value=genre.id name="genre.id")
+										button.btn.btn-link(type="submit")
+											span.glyphicon.glyphicon-trash(aria-hidden='true')
+

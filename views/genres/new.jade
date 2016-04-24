@@ -1,0 +1,8 @@
+extends ./_form
+
+block prepend form-for
+	form(action="add", method="post")
+		.input-group
+			input.form-control(type='text', name="genre.name", placeholder=__("genres.name"), required)
+			span.input-group-btn
+				button.btn.btn-success(type='submit') #{__("system.add")}

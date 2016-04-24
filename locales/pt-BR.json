@@ -24,6 +24,7 @@
 	"menu.logout": "Sair",
 	"menu.project": "Projeto",
 	"menu.bands": "Bandas",
+	"menu.genres": "Ritmos",
 	"index.welcome": "Sua estante virtual de discos",
 	"index.featured1.heading": "Sua coleção toda organizada",
 	"index.featured1.text": "Registre sua coleção de discos e nunca perca o controle de tudo que você tem.",
@@ -37,5 +38,12 @@
 	"bands.empty": "Nenhuma banda cadastrada ainda &#9785;",
 	"bands.deleted": "Banda removida com sucesso!",
 	"bands.updated": "Banda {{ name }} editada com sucesso!",
-	"bands.notfound": "Sua busca por {{ query }} não gerou resultados."
+	"bands.notfound": "Sua busca por {{ query }} não gerou resultados.",
+	"genres.name": "Nome dos Ritmos",
+	"genres.statistics": "Estatísticas",
+	"genres.empty": "Nenhuma banda cadastrada ainda &#9785;",
+	"genres.added": "Ritmo {{name}} adicionado!",
+	"genres.deleted": "Ritmo removida com sucesso!",
+	"genres.updated": "Ritmo {{ name }} editado com sucesso!",
+	"genres.notfound": "Sua busca por {{ query }} não gerou resultados."
 }

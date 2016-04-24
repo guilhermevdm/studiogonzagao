@@ -1,0 +1,9 @@
+extends ./_form
+
+block prepend form-for
+	form(action="edit/save", method="post")
+		.input-group
+			input(type="hidden", name="genre.id", value=genre.id)
+			input.form-control(type='text', name="genre.name",placeholder=__("genres.name"), value=genre.name,required)
+			span.input-group-btn
+				button.btn.btn-info(type='submit') #{__("system.edit")}

@@ -1,0 +1,20 @@
+html
+	meta(charset="UTF-8")
+	meta(http-equiv="X-UA-Compatible", content="IE=edge")
+	meta(name="viewport",content="width=device-width, initial-scale=1")
+	meta(name="description",content="")
+	meta(name="author",content="")
+	head
+		title Studio Gonzagão
+		block styles
+			include ./includes/head/css.jade
+		block scripts
+			include ./includes/head/js.jade
+	body
+		block menu
+			include ./includes/menu.jade
+		block messages
+			include ./includes/messages.jade
+		block content
+		block foot
+			include ./includes/footer.jade

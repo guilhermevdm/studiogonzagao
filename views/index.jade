@@ -1,0 +1,32 @@
+extends ./layout/layout
+
+block append styles
+	link(rel='stylesheet', href='/css/index.css')
+
+block content
+	.container
+		.jumbotron.index
+			h1.lobster Studio Gonzagão
+			p
+				| #{ __("index.welcome") }
+		.row
+			.col-lg-4.center.heading
+				img.img-circle(src='/images/1.jpg', alt='Vinyl Collection', width='140', height='140')
+				h2 #{ __("index.featured1.heading") }
+				p
+				| #{ __("index.featured1.text") }
+				p
+
+			.col-lg-4.center.heading
+				img.img-circle(src='/images/2.jpg', alt='Vinyl Collection exposed', width='140', height='140')
+				h2 #{ __("index.featured2.heading") }
+				p
+				| #{ __("index.featured2.text") }
+				p
+
+			.col-lg-4.center.heading
+				img.img-circle(src='/images/3.jpg', alt='Generic placeholder image', width='140', height='140')
+				h2 #{ __("index.featured3.heading") }
+				p
+				| #{ __("index.featured3.text") }
+				p

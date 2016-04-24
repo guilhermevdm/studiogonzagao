@@ -1,0 +1,10 @@
+li
+	a(href='/bands') #{ __("menu.bands") }
+
+li.dropdown
+	a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false') #{ __("menu.records") }
+	ul.dropdown-menu(role='menu') 
+		li
+			a(href='#') #{ __("menu.records.add") }
+		li
+			a(href='#') #{ __("menu.records.collection") }

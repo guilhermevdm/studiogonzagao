@@ -1,0 +1,15 @@
+extends ../layout/layout
+append styles
+	link(rel='stylesheet', href='../css/signin.css')
+
+block content
+	.container
+		.row
+			.col-md-12.middle-page
+				form.form-signin(action="register", method="post")
+					h4.form-signin-heading.center #{ __("login.registration") }
+					input.form-control(type="text", name="name", placeholder=__("system.name"), required)
+					input.form-control(type="email", name="username", placeholder=__("login.email"), required)
+					input.form-control(type="password", name="password", placeholder=__("login.password"), required)
+					button.btn.btn-lg.btn-primary.btn-block(type="submit") #{ __("login.register") }
+block foot

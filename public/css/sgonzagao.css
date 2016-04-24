@@ -1,0 +1,44 @@
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.userLogged {
+    position: absolute;
+    right: 50px;
+    top: 15px;
+}
+
+.lobster {
+  font-family: 'Lobster', cursive;
+}
+
+.jumbotron {
+  text-align: center;
+  border-bottom: 1px solid #e5e5e5;
+}
+.jumbotron .btn {
+  padding: 14px 24px;
+  font-size: 21px;
+}
+
+.rounded {
+  border-radius: 30px;
+}
+
+.center {
+  text-align: center;
+}
+
+.action {
+  display: inline-block;
+  margin-bottom: 0;
+}
+
+.action button {
+  font-size: 1.05em;
+}
+
+img {
+	max-width: 100%;
+	height: auto;
+}

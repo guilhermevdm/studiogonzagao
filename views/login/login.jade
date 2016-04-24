@@ -1,0 +1,14 @@
+extends ../layout/layout
+append styles
+	link(rel='stylesheet', href='../css/signin.css')
+
+block content
+	.container
+		.col-md-12.middle-page
+			form.form-signin(action="/login", method="post")
+				h4.form-signin-heading.center Login
+				input.form-control(type="email", name="username", placeholder=__("login.email"))
+				input.form-control(type="password", name="password", placeholder=__("login.password"))
+				button.btn.btn-success.btn-lg.btn-block(type="submit") #{ __("login.signin") }
+				a.register(href="user/register") #{ __("login.newacc") }
+block foot

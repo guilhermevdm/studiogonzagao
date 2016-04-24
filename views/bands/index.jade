@@ -1,0 +1,44 @@
+extends ../layout/layout
+
+block content
+	.container
+		.row
+			.col-xs-6
+				h2 #{__("menu.bands")}
+			.col-xs-6.text-right
+				h2
+					a.btn.btn-success(href='/bands/add') #{__("system.add")}
+		.row
+			.col-xs-12
+				form(action="/bands/search", method="get")
+					.input-group
+						input.form-control(type='text', name="band.name",placeholder=__("bands.name"))
+						span.input-group-btn
+							button.btn.btn-info(type='submit') #{__("system.search")}
+		.row
+			.col-xs-12
+				table.table.table-bordered.table-striped.table-hover.table-responsive
+					thead
+						tr
+							th #{__("bands.name")}
+							th #{__("bands.statistics")}
+							th #{__("system.actions")}
+					tbody
+						if bands.length == 0
+							tr
+								td(colspan="3")
+									p.text-center !{__("bands.empty")}
+						each band in bands
+							tr
+								td !{ band.name }
+								td N/a
+								td
+									form.action.form-inline(action="bands/edit", method="post")
+										input(type="hidden", value=band.id name="band.id")
+										button.btn.btn-link(type="submit")
+											span.glyphicon.glyphicon-edit(aria-hidden='true')
+									form.action.form-inline(action="bands/delete", method="post")
+										input(type="hidden", value=band.id name="band.id")
+										button.btn.btn-link(type="submit")
+											span.glyphicon.glyphicon-trash(aria-hidden='true')
+

@@ -1,0 +1,18 @@
+if success || info || error || warning
+	.container(style="margin-top: 20px;")
+			each val in success
+				.alert.alert-success.fade.in
+					a.close(aria-label="close") &times;
+					p !{val}
+			each val in info
+				.alert.alert-info.fade.in
+					a.close(aria-label="close") &times;
+					p !{val}
+			each val in error
+				.alert.alert-danger.fade.in
+					a.close(aria-label="close") &times;
+					p !{val}
+			each val in warning
+				.alert.alert-warning.fade.in
+					a.close(aria-label="close") &times;
+					p !{val}

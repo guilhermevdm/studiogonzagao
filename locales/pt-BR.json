@@ -4,6 +4,7 @@
 	"system.name": "Nome",
 	"system.add": "Adicionar",
 	"system.edit": "Editar",
+	"system.all": "Qualquer",
 	"login.password": "Senha",
 	"login.email": "Endereço de Email",
 	"login.logged": "Usuário {{name}} logado com sucesso!",
@@ -45,5 +46,7 @@
 	"genres.added": "Ritmo {{name}} adicionado!",
 	"genres.deleted": "Ritmo removida com sucesso!",
 	"genres.updated": "Ritmo {{ name }} editado com sucesso!",
-	"genres.notfound": "Sua busca por {{ query }} não gerou resultados."
+	"genres.notfound": "Sua busca por {{ query }} não gerou resultados.",
+	"records.name": "Nome do Disco",
+	"records.empty": "Você ainda nao registrou nenhum disco &#9785;"
 }

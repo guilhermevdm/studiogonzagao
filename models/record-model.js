@@ -14,6 +14,6 @@ var recordSchema = new Schema({
 
 recordSchema.plugin(timestamps);
 
-var Record = mongoose.model('Record', userSchema);
+var Record = mongoose.model('Record', recordSchema);
 
 module.exports = Record;

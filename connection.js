@@ -10,3 +10,5 @@ mongoose.connect(uristring, function (err, res) {
     console.log ('ERROR connecting to: ' + uristring + '. \n' + err);
   }
 });
+
+mongoose.set('debug', true);

@@ -1,0 +1,42 @@
+extends ../layout/layout
+
+block content
+	.container
+		.row
+			.col-xs-6
+				h2 #{__("menu.records")}
+			.col-xs-6.text-right
+				h2
+					a.disabled.btn.btn-success(href='/records/add') #{__("system.add")}
+		.row
+			form(action="/records/search", method="get")
+				.input-group
+					.col-xs-2
+						h4 #{__("menu.bands")}
+						select.form-control
+							option #{ __("system.all") }
+							each band in rbands
+								option(value=band.id) !{ band.name }
+					.col-xs-2
+						h4 #{__("menu.genres")}
+						select.form-control
+							option #{ __("system.all") }
+							each genre in rgenres
+								option(value=genre.id) !{ genre.name }
+					.col-xs-8
+						h4 #{__("records.name")}
+						.input-group
+							input.form-control(type='text', name="record.name", disabled)
+							span.input-group-btn
+								button.disabled.btn.btn-info(type='submit') #{__("system.search")}
+		.row
+			.col-xs-12
+				if records.length == 0
+					p.text-center !{__("records.empty")}
+				each record in records
+					.col-xs-2
+						img.loading.img-circle(data-src='/images/3.jpg', data-src-retina='/images/3.jpg', alt='Easy find out your records', width='140', height='140')
+						p.text-center record.band.name
+						p.text-center record.name
+						p.text-center record.year
+

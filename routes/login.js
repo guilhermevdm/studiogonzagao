@@ -4,6 +4,7 @@ var User = require('../models/user-model');
 var auth = require('../middlewares/auth');
 
 router.get('/', function(req, res) {
+	res.locals.login = "active";
 	if (req.session.user) {
 		req.flash("warning", req.__("login.alreadylogged"));
 		res.redirect("/");

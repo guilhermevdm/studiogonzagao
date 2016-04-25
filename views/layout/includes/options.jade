@@ -1,12 +1,12 @@
-li
+li(class= bands === undefined ? "" : "active")
 	a(href='/bands') #{ __("menu.bands") }
-li
+li(class= genres === undefined ? "" : "active")
 	a(href='/genres') #{ __("menu.genres") }
 
-li.dropdown
+li.dropdown(class= discs === undefined ? "" : "active").disabled
 	a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false') #{ __("menu.records") }
 	ul.dropdown-menu(role='menu') 
-		li
+		li.disabled
 			a(href='#') #{ __("menu.records.add") }
-		li
+		li.disabled
 			a(href='#') #{ __("menu.records.collection") }

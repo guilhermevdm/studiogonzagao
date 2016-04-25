@@ -9,13 +9,13 @@ nav.navbar.navbar-static-top.navbar-default(role='navigation')
 			a.navbar-brand.lobster(href='/') Studio Gonzagão
 		#navbar.collapse.navbar-collapse
 			ul.nav.navbar-nav
-				li
+				li(class= index === undefined ? "" : "active")
 					a(href='/') #{ __("menu.home") }
 				if session.user
 					include options.jade
-				li
+				li(class= about === undefined ? "" : "active").disabled
 					a(href='#') #{ __("menu.about") }
-				li
+				li(class= project === undefined ? "" : "active").disabled
 					a(href="#") #{ __("menu.project") }
 			ul.nav.navbar-nav.navbar-right
 				if session.user
@@ -25,8 +25,8 @@ nav.navbar.navbar-static-top.navbar-default(role='navigation')
 							li
 								a(href="/login/logout") !{ __("menu.logout")}
 				else
-					li
+					li(class= login === undefined ? "" : "active")
 						a(href='/login') #{ __("login.login") }
-					li
+					li(class= register === undefined ? "" : "active")
 						a(href="user/register") #{ __("login.register") }
 

@@ -47,6 +47,5 @@ img {
   background-image: url("/images/loading.gif");
   background-repeat: no-repeat;
   background-position: center center;
-  height: 140px;
-  width: 140px;
+  max-height: 500px;
 }

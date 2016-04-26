@@ -31,7 +31,7 @@
 	"index.featured1.text": "Registre sua coleção de discos e nunca perca o controle de tudo que você tem.",
 	"index.featured2.heading": "Sua coleção é um museu da música",
 	"index.featured2.text": "Mostre seu acervo para os outras pessoas e veja coleções de outros usuários.",
-	"index.featured3.heading": "Procure e ache rapidamente",
+	"index.featured3.heading": "Procure e encontre rapidamente",
 	"index.featured3.text": "Faça pesquisas por seus discos e os encontre rapidamente em seu acervo musical.",
 	"bands.name": "Nome da Banda",
 	"bands.statistics": "Estatísticas",
@@ -48,5 +48,11 @@
 	"genres.updated": "Ritmo {{ name }} editado com sucesso!",
 	"genres.notfound": "Sua busca por {{ query }} não gerou resultados.",
 	"records.name": "Nome do Disco",
-	"records.empty": "Você ainda nao registrou nenhum disco &#9785;"
+	"records.empty": "Você ainda nao registrou nenhum disco &#9785;",
+	"index.featured.vinyl.heading": "Registre toda a sua coleção",
+	"index.featured.vinyl.text": "Registre toda a sua coleção de discos e mostre para todos o seu acervo.",
+	"index.featured.special.heading": "Destaque seus discos especiais",
+	"index.featured.special.text": "Destaque os discos que você mais gosta e/ou suas raridades musicais!",
+	"index.featured.statistics.heading": "Conheça o seu acervo músical",
+	"index.featured.statistics.text": "Saiba quais bandas e ritmos sua coleção possui mais."
 }

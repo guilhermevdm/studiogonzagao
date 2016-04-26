@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "npm run-script start-mongo & node ./bin/www",
     "debug": "node-debug ./bin/www",
     "start-mongo": "cd ~/Desenvolvimento/mongo && mongod --dbpath=data/db"
   },

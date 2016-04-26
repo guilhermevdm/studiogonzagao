@@ -54,5 +54,11 @@
 	"index.featured.special.heading": "Destaque seus discos especiais",
 	"index.featured.special.text": "Destaque os discos que você mais gosta e/ou suas raridades musicais!",
 	"index.featured.statistics.heading": "Conheça o seu acervo músical",
-	"index.featured.statistics.text": "Saiba quais bandas e ritmos sua coleção possui mais."
+	"index.featured.statistics.text": "Saiba quais bandas e ritmos sua coleção possui mais.",
+	"records.bands": "Banda",
+	"records.year": "Ano",
+	"records.label": "Gravadora",
+	"records.genres": "Ritmo",
+	"records.number": "Número",
+	"record.added": "Disco {{name}} adicionado com sucesso!"
 }

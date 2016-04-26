@@ -15,8 +15,8 @@ nav.navbar.navbar-static-top.navbar-default(role='navigation')
 					include options.jade
 				li(class= about === undefined ? "" : "active").disabled
 					a(href='#') #{ __("menu.about") }
-				li(class= project === undefined ? "" : "active").disabled
-					a(href="#") #{ __("menu.project") }
+				li(class= project === undefined ? "" : "active")
+					a(href="https://github.com/mariohd/studiogonzagao", target="_blank") #{ __("menu.project") }
 			ul.nav.navbar-nav.navbar-right
 				if session.user
 					li.dropdown

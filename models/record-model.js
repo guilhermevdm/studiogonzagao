@@ -9,7 +9,8 @@ var recordSchema = new Schema({
 	genre: { type: Schema.Types.ObjectId, ref: 'Genre', required: true },
 	label: { type: String },
 	year: Number,
-	number: String
+	number: String,
+	cover: String
 });
 
 recordSchema.plugin(timestamps);

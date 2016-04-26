@@ -50,6 +50,19 @@ img {
   max-height: 500px;
 }
 
+.record {
+  margin-bottom: 15px;
+}
+
+.record img {
+  display: block;
+  margin: auto auto;
+}
+
+.record-list {
+  margin-top: 20px;
+}
+
 .spin:hover {
     -webkit-animation:spin 1.5s linear infinite;
     -moz-animation:spin 1.5s linear infinite;

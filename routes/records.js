@@ -66,11 +66,41 @@ router.get('/', auth, function(req, res) {
 			res.locals.error = [err];
 			res.render('records/index');
 		});
-	});
+	}).populate('band');
 });
 
 router.get('/add', auth, function(req, res) {
-	res.render('records/new');
+	getFromCache(req, res).then(function (cache) {
+		res.locals.rbands = cache.bands;
+		res.locals.rgenres = cache.genres;
+		res.render('records/new');
+	}).catch(function (err) {
+		res.locals.error = [err];
+		res.render('records/index');
+	});
+});
+
+router.post('/add', auth, function (req, res) {
+	var record = new Records({
+		name: req.body['record.name'],
+		band: req.body['record.band'],
+		year: req.body['record.year'],
+		label: req.body['record.label'],
+		genre: req.body['record.genre'],
+		number: req.body['record.number'],
+		user: req.session.user._id
+	});
+
+	record.save(function (err, record) {
+		if (err) {
+			console.log(err);
+			req.flash("error", err.message);
+		} else {
+			req.flash("success", req.__("record.added", {name: record.name })); 
+		}
+		res.redirect('/records');
+	});
+
 });
 
 module.exports = router;

@@ -1,8 +1,35 @@
 extends ./_form
 
 block prepend form-for
-	form(action="add", method="post")
-		.input-group
-			input.form-control(type='text', name="record.name", placeholder=__("records.name"), required)
-			span.input-group-btn
-				button.btn.btn-success(type='submit') #{__("system.add")}
+	form(action="/records/add", method="post")
+		.row
+			.col-lg-6
+				h4 #{__("records.name")}
+				input.form-control(type='text', name="record.name")
+
+			.col-lg-3
+				h4 #{__("records.bands")}
+				select.form-control(name="record.band")
+					each band in rbands
+						option(value=band.id) !{ band.name }
+			.col-lg-3
+				h4 #{__("records.year")}
+				input.form-control(type='number', name="record.year")
+		.row
+			.col-lg-6
+				h4 #{__("records.label")}
+				input.form-control(type='text', name="record.label")
+
+			.col-lg-3
+				h4 #{__("records.genres")}
+				select.form-control(name="record.genre")
+					each genre in rgenres
+						option(value=genre.id) !{ genre.name }
+
+			.col-lg-3
+				h4 #{__("records.number")}
+				input.form-control(type='number', name="record.number")
+
+		.row
+			.col-lg-12
+				button.pull-right.btn.btn-success(type='submit') #{__("system.add")}

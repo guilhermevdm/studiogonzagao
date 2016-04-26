@@ -10,25 +10,24 @@ block content
 					a.disabled.btn.btn-success(href='/records/add') #{__("system.add")}
 		.row
 			form(action="/records/search", method="get")
-				.input-group
-					.col-xs-2
-						h4 #{__("menu.bands")}
-						select.form-control
-							option #{ __("system.all") }
-							each band in rbands
-								option(value=band.id) !{ band.name }
-					.col-xs-2
-						h4 #{__("menu.genres")}
-						select.form-control
-							option #{ __("system.all") }
-							each genre in rgenres
-								option(value=genre.id) !{ genre.name }
-					.col-xs-8
-						h4 #{__("records.name")}
-						.input-group
-							input.form-control(type='text', name="record.name", disabled)
-							span.input-group-btn
-								button.disabled.btn.btn-info(type='submit') #{__("system.search")}
+				.col-lg-2
+					h4 #{__("menu.bands")}
+					select.form-control
+						option #{ __("system.all") }
+						each band in rbands
+							option(value=band.id) !{ band.name }
+				.col-lg-2
+					h4 #{__("menu.genres")}
+					select.form-control
+						option #{ __("system.all") }
+						each genre in rgenres
+							option(value=genre.id) !{ genre.name }
+				.col-lg-8
+					h4 #{__("records.name")}
+					.input-group
+						input.form-control(type='text', name="record.name", disabled)
+						span.input-group-btn
+							button.disabled.btn.btn-info(type='submit') #{__("system.search")}
 		.row
 			.col-xs-12
 				if records.length == 0

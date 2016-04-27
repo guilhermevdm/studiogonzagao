@@ -10,6 +10,7 @@ function saveImage(id, base64Data) {
 								.replace(/^data:image\/jpeg;base64,/, "");
 	var filename = "public/images/covers/" +id + ".jpg";
 	require("fs").writeFile(filename, base64Data, 'base64', function(err) {
+		console.error("ERROR: ", err);
 	});
 	return filename.replace('public', '');
 };

@@ -63,6 +63,10 @@ img {
   margin: auto auto;
 }
 
+.record img:hover {
+  opacity: .5;
+}
+
 .record-list {
   margin-top: 20px;
 }

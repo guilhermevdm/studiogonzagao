@@ -43,6 +43,10 @@ img {
 	height: auto;
 }
 
+.last.row {
+  margin-top: 20px;
+}
+
 .loading {
   background-image: url("/images/loading.gif");
   background-repeat: no-repeat;

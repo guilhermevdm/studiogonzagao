@@ -78,12 +78,9 @@ router.post('/add', auth, function (req, res) {
 		label: req.body['record.label'],
 		genre: req.body['record.genre'],
 		number: req.body['record.number'],
+		cover: req.body['record.artwork'],
 		user: req.session.user._id
 	});
-
-	if (req.body['record.artwork']) {
-		record.cover = saveImage(record._id, req.body['record.artwork']);
-	}
 
 	record.save(function (err, record) {
 		if (err) {

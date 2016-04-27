@@ -34,7 +34,7 @@ block content
 					p.text-center !{__("records.empty")}
 				each record in records
 					.col-xs-4.col-sm-2.record
-						img.loading(data-src='/images/albumcover-placeholder.jpg', data-src-retina='/images/albumcover-placeholder.jpg', alt=record.name, title=record.name, width='200', height='200')
+						img.loading(data-src=record.cover || '/images/albumcover-placeholder.jpg', data-src-retina='/images/albumcover-placeholder.jpg', alt=record.name, title=record.name, width='200', height='200')
 						.text-center.medium #{ record.name.substring(0, 20) }
 						.text-center.small #{ record.band.name.substring(0, 20) }
 						.text-center.small #{ record.year }

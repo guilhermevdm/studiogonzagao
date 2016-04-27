@@ -5,6 +5,15 @@ var Bands = require("../models/band-model");
 var Genres = require("../models/genre-model");
 var auth = require('../middlewares/auth');
 
+function saveImage(id, base64Data) {
+	var base64Data = base64Data.replace(/^data:image\/png;base64,/, "")
+								.replace(/^data:image\/jpeg;base64,/, "");
+	var filename = "public/images/covers/" +id + ".jpg";
+	require("fs").writeFile(filename, base64Data, 'base64', function(err) {
+	});
+	return filename.replace('public', '');
+};
+
 function getBandsNGenres(req, res) {
 	var genresPromise = new Promise(function (resolve, reject) {
 		Genres.find({
@@ -70,6 +79,10 @@ router.post('/add', auth, function (req, res) {
 		number: req.body['record.number'],
 		user: req.session.user._id
 	});
+
+	if (req.body['record.artwork']) {
+		record.cover = saveImage(record._id, req.body['record.artwork']);
+	}
 
 	record.save(function (err, record) {
 		if (err) {

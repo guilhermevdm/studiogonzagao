@@ -1,34 +1,63 @@
 extends ./_form
 
+block append scripts
+	script(src='/js/jquery.exif.js')
+	script(src='/js/jquery.canvasResize.js')
+	script.
+		$(document).ready(function () {
+			$('.cover').click(function () {
+				$('#cover-artwork').click();
+			});
+
+			$('#cover-artwork').change(function(e) {
+				var file = e.target.files[0];
+				$.canvasResize(file, {
+					width: 350,
+					height: 0,
+					crop: false,
+					quality: 200,
+					callback: function(data, width, height) {
+						$('.cover').attr('src', data);
+						$('#b64-cover').val(data);
+					}
+				});
+			});
+		});
+
 block prepend form-for
 	form(action="/records/add", method="post")
 		.row
-			.col-lg-6
-				h4 #{__("records.name")}
-				input.form-control(type='text', name="record.name")
+			.col-lg-2
+				input(id="b64-cover", name="record.artwork", type="hidden")
+				input.cover-upload(type="file", id="cover-artwork", accept="image/x-png, image/jpeg")
+				img.loading.cover(data-src='/images/albumcover-placeholder2.png', data-src-retina='/images/albumcover-placeholder2.jpg', width="200")
+			.col-lg-10
+				.row
+					.col-lg-6
+						h4 #{__("records.name")}
+						input.form-control(type='text', name="record.name")
 
-			.col-lg-3
-				h4 #{__("records.bands")}
-				select.form-control(name="record.band")
-					each band in rbands
-						option(value=band.id) !{ band.name }
-			.col-lg-3
-				h4 #{__("records.year")}
-				input.form-control(type='number', name="record.year")
-		.row
-			.col-lg-6
-				h4 #{__("records.label")}
-				input.form-control(type='text', name="record.label")
+					.col-lg-3
+						h4 #{__("records.bands")}
+						select.form-control(name="record.band")
+							each band in rbands
+								option(value=band.id) !{ band.name }
+					.col-lg-3
+						h4 #{__("records.year")}
+						input.form-control(type='number', name="record.year")
+				.row
+					.col-lg-6
+						h4 #{__("records.label")}
+						input.form-control(type='text', name="record.label")
 
-			.col-lg-3
-				h4 #{__("records.genres")}
-				select.form-control(name="record.genre")
-					each genre in rgenres
-						option(value=genre.id) !{ genre.name }
-
-			.col-lg-3
-				h4 #{__("records.number")}
-				input.form-control(type='number', name="record.number")
+					.col-lg-3
+						h4 #{__("records.genres")}
+						select.form-control(name="record.genre")
+							each genre in rgenres
+								option(value=genre.id) !{ genre.name }
+					.col-lg-3
+						h4 #{__("records.number")}
+						input.form-control(type='number', name="record.number")
 
 		.row.last
 			.col-lg-12

@@ -12,6 +12,14 @@ body {
   font-family: 'Lobster', cursive;
 }
 
+.heading img {
+  cursor: pointer;
+}
+
+#helloween {
+  cursor: url('/images/helloween.png'), auto;
+}
+
 .jumbotron {
   text-align: center;
   border-bottom: 1px solid #e5e5e5;

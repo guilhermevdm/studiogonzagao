@@ -1,5 +1,5 @@
 {
-	"system.search" : "Search",
+	"system.search": "Search",
 	"system.actions": "Actions",
 	"system.name": "Name",
 	"system.add": "Add",
@@ -45,5 +45,11 @@
 	"genres.added": "Genre {{name}} added!",
 	"genres.deleted": "The genre was successfully removed.",
 	"genres.updated": "Genre {{ name }} successfully updated!",
-	"genres.notfound": "Your query for {{ query }} has no match."
+	"genres.notfound": "Your query for {{ query }} has no match.",
+	"index.featured.vinyl.heading": "index.featured.vinyl.heading",
+	"index.featured.vinyl.text": "index.featured.vinyl.text",
+	"index.featured.special.heading": "index.featured.special.heading",
+	"index.featured.special.text": "index.featured.special.text",
+	"index.featured.statistics.heading": "index.featured.statistics.heading",
+	"index.featured.statistics.text": "index.featured.statistics.text"
 }

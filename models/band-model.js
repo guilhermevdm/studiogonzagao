@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var timestamps = require('mongoose-timestamp');
 var Schema = mongoose.Schema;
+var Records = require("./record-model");
 
 var bandSchema = new Schema({
 	name: { type: String, required: true },
@@ -8,6 +9,11 @@ var bandSchema = new Schema({
 });
 
 bandSchema.plugin(timestamps);
+
+bandSchema.pre('remove', function (next) {
+	Records.remove({ band: this.id }).exec();
+	next();
+});
 
 var Band = mongoose.model('Band', bandSchema);
 

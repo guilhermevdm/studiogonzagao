@@ -33,12 +33,13 @@ router.post('/add', auth, function(req, res) {
 });
 
 router.post('/delete', auth, function(req, res) {
-	var band = { 
+	var query = Band.where({
 		_id: req.body["band.id"],
 		user: req.session.user._id
-	};
+	});
 
-	Band.remove(band, function (err, band) {
+	query.findOne(function (err, band) {
+		band.remove();
 		if (err) {
 			req.flash("error", err.message);
 		} else {

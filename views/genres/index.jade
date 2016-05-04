@@ -21,7 +21,6 @@ block content
 					thead
 						tr
 							th #{__("genres.name")}
-							th #{__("genres.statistics")}
 							th #{__("system.actions")}
 					tbody
 						if genres.length == 0
@@ -31,7 +30,6 @@ block content
 						each genre in genres
 							tr
 								td !{ genre.name }
-								td N/a
 								td
 									form.action.form-inline(action="genres/edit", method="post")
 										input(type="hidden", value=genre.id name="genre.id")

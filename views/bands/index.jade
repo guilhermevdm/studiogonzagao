@@ -21,7 +21,6 @@ block content
 					thead
 						tr
 							th #{__("bands.name")}
-							th #{__("bands.statistics")}
 							th #{__("system.actions")}
 					tbody
 						if bands.length == 0
@@ -31,7 +30,6 @@ block content
 						each band in bands
 							tr
 								td !{ band.name }
-								td N/a
 								td
 									form.action.form-inline(action="bands/edit", method="post")
 										input(type="hidden", value=band.id name="band.id")

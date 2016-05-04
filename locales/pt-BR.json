@@ -34,14 +34,12 @@
 	"index.featured3.heading": "Procure e encontre rapidamente",
 	"index.featured3.text": "Faça pesquisas por seus discos e os encontre rapidamente em seu acervo musical.",
 	"bands.name": "Nome da Banda",
-	"bands.statistics": "Estatísticas",
 	"bands.added": "Banda {{name}} adicionada!",
 	"bands.empty": "Nenhuma banda cadastrada ainda &#9785;",
 	"bands.deleted": "Banda removida com sucesso!",
 	"bands.updated": "Banda {{ name }} editada com sucesso!",
 	"bands.notfound": "Sua busca por {{ query }} não gerou resultados.",
 	"genres.name": "Nome dos Ritmos",
-	"genres.statistics": "Estatísticas",
 	"genres.empty": "Nenhuma banda cadastrada ainda &#9785;",
 	"genres.added": "Ritmo {{name}} adicionado!",
 	"genres.deleted": "Ritmo removida com sucesso!",
@@ -61,6 +59,6 @@
 	"records.genres": "Ritmo",
 	"records.number": "Número",
 	"record.added": "Disco {{name}} adicionado com sucesso!",
-	"records.updated": "records.updated",
-	"record.notfound": "record.notfound"
+	"records.updated": "Disco {{name}} editado com sucesso!",
+	"record.notfound": "Disco não encontrado."
 }

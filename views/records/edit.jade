@@ -55,7 +55,10 @@ block prepend form-for
 						h4 #{__("records.genres")}
 						select.form-control(name="record.genre")
 							each genre in rgenres
-								option(value=genre.id, selected= genre.id == record.genre.id)  !{ genre.name }
+								if (record.genre)
+									option(value=genre.id, selected= genre.id == record.genre.id)  !{ genre.name }
+								else 
+									option(value=genre.id)  !{ genre.name }
 					.col-lg-3
 						h4 #{__("records.number")}
 						input.form-control(type='number', name="record.number", value=record.number)

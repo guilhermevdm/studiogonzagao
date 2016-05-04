@@ -73,6 +73,7 @@ img {
 
 .record img:hover {
   opacity: .55;
+  cursor: pointer;
 }
 
 .record-list {

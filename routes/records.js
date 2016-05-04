@@ -45,7 +45,7 @@ router.get('/', auth, function(req, res) {
 		}, function (err, bands) {
 			if (err) reject(err);
 			resolve(bands);
-		}).populate('band');
+		}).populate('band').sort( { 'band.name': 1, year: 1, name: 1 });
 	});
 
 	Promise.all([getBandsNGenres(req, res), recordsPromise]).then(function (values) {
@@ -92,5 +92,85 @@ router.post('/add', auth, function (req, res) {
 	});
 
 });
+
+router.post('/edit', auth, function(req, res) {
+	getBandsNGenres(req, res).then(function (values) {
+		res.locals.rbands = values[0];
+		res.locals.rgenres = values[1];
+		var query = Records.where({ 
+			_id: req.body["record.id"],
+			user: req.session.user._id
+		}).populate('band genre');
+		query.findOne(function (err, record) {
+			if (err) {
+				req.flash("error", err.message);
+				res.render('records/index');
+			} else {
+				res.locals.record = record;
+				res.render('records/edit');
+			}
+		});
+	}).catch(function (err) {
+		res.locals.error = [err.message];
+		res.render('records/index');
+	});
+
+});
+
+router.post('/edit/save', auth, function(req, res) {
+
+	var query = Records.where({ 
+		_id: req.body["record.id"],
+		user: req.session.user._id
+	});
+
+	query.findOne(function (err, record) {
+		if (err) {
+			req.flash("error", err.message);
+			res.redirect('/records');
+		} else {
+			record.name = req.body['record.name'];
+			record.band = req.body['record.band'];
+			record.year = req.body['record.year'];
+			record.label = req.body['record.label'];
+			record.genre = req.body['record.genre'];
+			record.number = req.body['record.number'];
+			record.cover = req.body['record.artwork'];
+			record.save(function (err, record) {
+				if (err) {
+					req.flash("error", err.message);
+				} else {
+					req.flash("success", res.__("records.updated", { name: record.name }));
+				}
+				res.redirect('/records');
+			});	
+		}
+	});
+});
+
+router.get('/search', auth,function (req, res) {
+	var query = {
+			name: { "$regex": req.query["record.name"], "$options": "ig" },
+			user: req.session.user._id
+		};
+		if (req.query["record.band"].trim())
+			query.band = req.query["record.band"];
+
+		if (req.query["record.genre"].trim())
+			query.genre = req.query["record.genre"];
+	Records.find(query, function (err, records) {
+			getBandsNGenres(req, res).then(function (values) {
+				res.locals.rbands = values[0];
+				res.locals.rgenres = values[1];
+				if (records.length == 0) {
+					res.locals.error = [res.__("record.notfound", { query : req.query["record.name"] })];
+				}
+				res.locals.query = query;
+				res.locals.records = records;
+				res.render('records/index');
+			});
+		}).populate('band');
+});
+
 
 module.exports = router;

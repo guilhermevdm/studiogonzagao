@@ -60,5 +60,7 @@
 	"records.label": "Gravadora",
 	"records.genres": "Ritmo",
 	"records.number": "Número",
-	"record.added": "Disco {{name}} adicionado com sucesso!"
+	"record.added": "Disco {{name}} adicionado com sucesso!",
+	"records.updated": "records.updated",
+	"record.notfound": "record.notfound"
 }

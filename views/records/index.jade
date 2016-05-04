@@ -1,5 +1,12 @@
 extends ../layout/layout
 
+block append scripts
+	script.
+		$(function () {
+			$('.record').click(function () {
+				$(this).find('form').submit();
+			});
+		});
 block content
 	.container
 		.row
@@ -12,30 +19,32 @@ block content
 			form(action="/records/search", method="get")
 				.col-lg-2
 					h4 #{__("menu.bands")}
-					select.form-control(disabled)
-						option #{ __("system.all") }
+					select.form-control(name="record.band")
+						option(value='') #{ __("system.all") }
 						each band in rbands
 							option(value=band.id) !{ band.name }
 				.col-lg-2
 					h4 #{__("menu.genres")}
-					select.form-control(disabled)
-						option #{ __("system.all") }
+					select.form-control(name="record.genre")
+						option(value='') #{ __("system.all") }
 						each genre in rgenres
 							option(value=genre.id) !{ genre.name }
 				.col-lg-8
 					h4 #{__("records.name")}
 					.input-group
-						input.form-control(type='text', name="record.name", disabled)
+						input.form-control(type='text', name="record.name")
 						span.input-group-btn
-							button.disabled.btn.btn-info(type='submit') #{__("system.search")}
+							button.btn.btn-info(type='submit') #{__("system.search")}
 		.row
 			.col-sm-12.record-list
 				if records.length == 0
 					p.text-center !{__("records.empty")}
 				each record in records
 					.col-xs-4.col-sm-2.record
-						img.loading(data-src=record.cover || '/images/albumcover-placeholder.jpg', data-src-retina='/images/albumcover-placeholder.jpg', alt=record.name, title=record.name, width='200', height='200')
-						.text-center.medium #{ record.name.substring(0, 20) }
-						.text-center.small #{ record.band.name.substring(0, 20) }
-						.text-center.small #{ record.year }
+						form(method="post", action="/records/edit")
+							input(type="hidden", value=record.id, name="record.id")
+							img.loading(data-src=record.cover || '/images/albumcover-placeholder.jpg', data-src-retina='/images/albumcover-placeholder.jpg', alt=record.name, title=record.name, width='200', height='200')
+							.text-center.medium #{ record.name.substring(0, 20) }
+							.text-center.small #{ record.band.name.substring(0, 20) }
+							.text-center.small #{ record.year }
 

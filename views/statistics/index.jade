@@ -13,7 +13,7 @@ block append scripts
 				var array = [
 					"rgba(255,99,132,0.8)", "rgba(255,205,86,0.8)",
 					"rgba(54,162,235,0.8)","rgba(75,192,192,0.8)",
-					"rgba(231,233,237,0.8)","rgba(179,181,198,0.8)",
+					"rgba(101,233,237,0.8)","rgba(179,181,198,0.8)",
 					"#4661EE","#EC5657","#1BCDD1","#8FAABB","#B08BEB",
 					"#3EA0DD","#F5A52A","#23BFAA","#FAA586","#EB8CC6"
 				];
@@ -49,13 +49,22 @@ block append scripts
 				plotDoughnut('recodsByBand', values);
 			});
 
+			$.get('/statistics/genres', function (data) {
+				var values = {labels:[], data: []};
+				data.forEach(function (item) {
+					values.labels.push(item.name);
+					values.data.push(item.count);
+				});
+				plotDoughnut('recodsByGenre', values);
+			});
+
 		});
 
 block content
 	.container
-		.col-xs-offset-1.col-xs-10
+		.col-xs-6
 			h3.center #{ __('statistics.recordsByBands') }
 			canvas#recodsByBand
-		.col-xs-offset-1.col-xs-10
+		.col-xs-6
 			h3.center #{ __('statistics.recordsByGenres') }
 			canvas#recodsByGenre

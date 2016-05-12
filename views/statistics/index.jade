@@ -1,0 +1,61 @@
+extends ../layout/layout
+
+
+block append scripts
+	script(src='/js/Chart.min.js')
+	script.
+		$(function () {
+			var randomColorGenerator = function () { 
+				return '#' + (Math.random().toString(16) + '0000000').slice(2, 8); 
+			};
+
+			var randomArrayColor = function (qty) {
+				var array = [
+					"rgba(255,99,132,0.8)", "rgba(255,205,86,0.8)",
+					"rgba(54,162,235,0.8)","rgba(75,192,192,0.8)",
+					"rgba(231,233,237,0.8)","rgba(179,181,198,0.8)",
+					"#4661EE","#EC5657","#1BCDD1","#8FAABB","#B08BEB",
+					"#3EA0DD","#F5A52A","#23BFAA","#FAA586","#EB8CC6"
+				];
+				qty = qty | 1;
+				for(var i = 0; i < qty; i++) {
+					array.push(randomColorGenerator());
+				}
+				return array;
+			};
+
+			function plotDoughnut(canvasId, dataGraphics) {
+				var ctx = document.getElementById(canvasId);
+				var myChart = new Chart(ctx, {
+					type: 'doughnut',
+					omitLabels: true,
+					data: {
+						labels: dataGraphics.labels,
+						datasets: [{
+							data: dataGraphics.data,
+							backgroundColor: randomArrayColor(dataGraphics.data.length),
+							strokeColor: 'black'
+						}]
+					},
+				});
+			};
+
+			$.get('statistics/bands', function (data) {
+				var values = {labels:[], data: []};
+				data.forEach(function (item) {
+					values.labels.push(item.name);
+					values.data.push(item.count);
+				});
+				plotDoughnut('recodsByBand', values);
+			});
+
+		});
+
+block content
+	.container
+		.col-xs-offset-1.col-xs-10
+			h3.center #{ __('statistics.recordsByBands') }
+			canvas#recodsByBand
+		.col-xs-offset-1.col-xs-10
+			h3.center #{ __('statistics.recordsByGenres') }
+			canvas#recodsByGenre

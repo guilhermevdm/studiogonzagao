@@ -60,5 +60,9 @@
 	"records.number": "Número",
 	"record.added": "Disco {{name}} adicionado com sucesso!",
 	"records.updated": "Disco {{name}} editado com sucesso!",
-	"record.notfound": "Disco não encontrado."
+	"record.notfound": "Disco não encontrado.",
+	"menu.statistics": "Estatísticas",
+	"statistics.recordsByBands": "Discos por Bandas",
+	"statistics.recordsByGenres": "Discos por Ritmos"
+
 }

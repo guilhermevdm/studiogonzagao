@@ -40,7 +40,7 @@ block append scripts
 				});
 			};
 
-			$.get('statistics/bands', function (data) {
+			$.get('/statistics/bands', function (data) {
 				var values = {labels:[], data: []};
 				data.forEach(function (item) {
 					values.labels.push(item.name);

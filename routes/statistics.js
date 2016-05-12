@@ -18,16 +18,25 @@ router.get('/bands', function (req, res) {
 			} 
 		},
 	], function (err, result) {
-		var promises = [];
-		result.forEach(function (band, index) {
-			promises.push(Bands.findOne({
-				_id: band._id
-			}, function (e, fullband) {
-				result[index].name = fullband.name
-			}));
+		var bands = result.map(function (band) {
+			return band._id;
 		});
-		Promise.all(promises).then(function () {
-			res.json(result);
+		Bands.find({
+			_id: { $in: bands }
+		}, function (e, bands) {
+			if (e) return res.status(500).json(e);
+			var response = [];
+			bands.forEach(function (band) {
+
+				response.push({
+					name: band.name,
+					count: result.filter(function (r) {
+						return r._id == band.id;
+					})[0].count
+				});
+
+			});
+			res.json(response);
 		});
 	});
 });

@@ -69,6 +69,8 @@ img {
 .record img {
   display: block;
   margin: auto auto;
+  border-radius: 8px;
+  border: 4px solid LavenderBlush ;
 }
 
 .record img:hover {

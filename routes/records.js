@@ -45,7 +45,7 @@ router.get('/', auth, function(req, res) {
 		}, function (err, bands) {
 			if (err) reject(err);
 			resolve(bands);
-		}).populate('band').sort( { 'band.name': 1, year: 1, name: 1 });
+		}).populate('band').sort( { band: 1, year: 1, name: 1 });
 	});
 
 	Promise.all([getBandsNGenres(req, res), recordsPromise]).then(function (values) {

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 var User = require('../models/user-model');
 var auth = require('../middlewares/auth');
+var security = require('../middlewares/security');
 
 router.get('/', function(req, res) {
 	res.locals.login = "active";
@@ -24,7 +25,7 @@ router.get('/logout', auth, function(req, res) {
 router.post('/', function(req, res) {
 	var user = { 
 		username: req.body.username,
-		password: req.body.password
+		password: security.encrypt(req.body.password)
 	};
 
 	findUser(req, res, user);

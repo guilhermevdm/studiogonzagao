@@ -3,6 +3,7 @@ var router = express.Router();
 var Records = require("../models/record-model");
 var Bands = require("../models/band-model");
 var Genres = require("../models/genre-model");
+var User = require('../models/user-model');
 var auth = require('../middlewares/auth');
 
 function saveImage(id, base64Data) {
@@ -15,10 +16,11 @@ function saveImage(id, base64Data) {
 	return filename.replace('public', '');
 };
 
-function getBandsNGenres(req, res) {
+function getBandsNGenres(req, res, user) {
+	var user = user || req.session.user;
 	var genresPromise = new Promise(function (resolve, reject) {
 		Genres.find({
-			user: req.session.user._id
+			user: user._id
 		}, function (err, genres) {
 			if (err) reject(err);
 			resolve(genres);
@@ -27,7 +29,7 @@ function getBandsNGenres(req, res) {
 
 	var bandsPromise = new Promise(function (resolve, reject) {
 		Bands.find({
-			user: req.session.user._id
+			user: user._id
 		}, function (err, bands) {
 			if (err) reject(err);
 			resolve(bands);
@@ -38,17 +40,17 @@ function getBandsNGenres(req, res) {
 }
 
 router.get('/', auth, function(req, res) {
-
+	var user = req.session.user;
 	var recordsPromise = new Promise(function (resolve, reject) {
 		Records.find({
-			user: req.session.user._id
+			user: user._id
 		}, function (err, bands) {
 			if (err) reject(err);
 			resolve(bands);
 		}).populate('band').sort( { band: 1, year: 1, name: 1 });
 	});
 
-	Promise.all([getBandsNGenres(req, res), recordsPromise]).then(function (values) {
+	Promise.all([getBandsNGenres(req, res, user), recordsPromise]).then(function (values) {
 		res.locals.rbands = values[0][0];
 		res.locals.rgenres = values[0][1];
 		res.locals.records = values[1];
@@ -56,7 +58,7 @@ router.get('/', auth, function(req, res) {
 	}).catch(function (err) {
 		res.locals.error = [err.message];
 		res.render('records/index');
-	});;
+	});
 });
 
 router.get('/add', auth, function(req, res) {
@@ -172,5 +174,33 @@ router.get('/search', auth,function (req, res) {
 		}).populate('band');
 });
 
+router.get('/user/:id', function (req, res) {
+	User.findOne({ _id: req.params.id }, function (err, user) {
+		if (user) {
+			res.locals.user = user;
+			var recordsPromise = new Promise(function (resolve, reject) {
+				Records.find({
+					user: user._id
+				}, function (err, bands) {
+					if (err) reject(err);
+					resolve(bands);
+				}).populate('band').sort( { band: 1, year: 1, name: 1 });
+			});
+
+			Promise.all([getBandsNGenres(req, res, user), recordsPromise]).then(function (values) {
+				res.locals.rbands = values[0][0];
+				res.locals.rgenres = values[0][1];
+				res.locals.records = values[1];
+				res.render('records/profile');
+			}).catch(function (err) {
+				res.locals.error = [err.message];
+				res.render('records/profile');
+			});
+		} else {
+			res.locals.error =  [req.__("login.notfound")];
+			res.redirect('/');
+		}
+	});
+});
 
 module.exports = router;

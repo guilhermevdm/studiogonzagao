@@ -19,7 +19,9 @@ nav.navbar.navbar-static-top.navbar-default(role='navigation')
 				if session.user
 					li.dropdown
 						a.dropdown-toggle(href='#', data-toggle='dropdown', role='button', aria-expanded='false') !{ session.user.name }
-						ul.dropdown-menu(role='menu') 
+						ul.dropdown-menu(role='menu')
+							li
+								a(href="/records/user/"+ session.user._id, target="_blank") !{ __("menu.profile") }
 							li
 								a(href="/login/logout") !{ __("menu.logout")}
 				else

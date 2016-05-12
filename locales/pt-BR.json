@@ -22,6 +22,7 @@
 	"menu.records": "Discos",
 	"menu.records.add": "Adicionar",
 	"menu.records.collection": "Ver coleção",
+	"menu.profile": "Seu Perfil",
 	"menu.logout": "Sair",
 	"menu.project": "Projeto",
 	"menu.bands": "Bandas",
@@ -64,5 +65,4 @@
 	"menu.statistics": "Estatísticas",
 	"statistics.recordsByBands": "Discos por Bandas",
 	"statistics.recordsByGenres": "Discos por Ritmos"
-
 }

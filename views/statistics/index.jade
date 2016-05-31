@@ -27,8 +27,13 @@ block append scripts
 			function plotDoughnut(canvasId, dataGraphics) {
 				var ctx = document.getElementById(canvasId);
 				var myChart = new Chart(ctx, {
-					type: 'doughnut',
+					type: 'bar',
 					omitLabels: true,
+					options: {
+						legend: {
+							display: false,
+						}
+					},
 					data: {
 						labels: dataGraphics.labels,
 						datasets: [{
@@ -62,9 +67,9 @@ block append scripts
 
 block content
 	.container
-		.col-xs-6
+		.col-xs-12
 			h3.center #{ __('statistics.recordsByBands') }
 			canvas#recodsByBand
-		.col-xs-6
+		.col-xs-12
 			h3.center #{ __('statistics.recordsByGenres') }
 			canvas#recodsByGenre

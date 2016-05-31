@@ -100,3 +100,9 @@ img {
   display: block;
   margin: auto auto;
 }
+
+.dots {
+    white-space: nowrap;
+    overflow:hidden !important;
+    text-overflow: ellipsis;
+}

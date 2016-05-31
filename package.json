@@ -19,6 +19,7 @@
     "mongodb": "^2.1.10",
     "mongoose": "^4.4.8",
     "mongoose-cachebox": "^1.2.0",
+    "mongoose-findorcreate": "^0.1.2",
     "mongoose-timestamp": "^0.3.0",
     "morgan": "~1.5.1",
     "mu2": "^0.5.20",

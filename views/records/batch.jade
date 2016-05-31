@@ -22,38 +22,37 @@ block append scripts
 					var record;
 					while(index){
 						record =  {
-							label: workbook.Sheets.Plan1['A' + index].v,
-							genre: workbook.Sheets.Plan1['B' + index].v,
-							band: workbook.Sheets.Plan1['C' + index].v,
+							label: workbook.Sheets.Plan1['A' + index].v.trim(),
+							genre: workbook.Sheets.Plan1['B' + index].v.trim(),
+							band: workbook.Sheets.Plan1['C' + index].v.trim(),
 							year: workbook.Sheets.Plan1['D' + index].v,
 							number: workbook.Sheets.Plan1['E' + index].v,
-							name: workbook.Sheets.Plan1['F' + index].v
+							name: workbook.Sheets.Plan1['F' + index].v.trim()
 						};
 
 						records.push(record);
 						index = workbook.Sheets.Plan1.hasOwnProperty('A' + (index+1))? ++index : undefined;
 					}
-					var chunks = function(array, size) {
-						var results = [];
-						while (array.length) {
-							results.push(array.splice(0, size));
-						}
-						return results;
-					};
 					
-					var recordsChunks = chunks(records, 10);
 					var completed = 0;
 
-					recordsChunks.forEach(function (element) {
+					function addRecord(element) {
+						debugger;
 						$.get('batch/add',  
-							{ records: JSON.stringify(element) }, 
-						function (data) {
-							completed++;
-							var text = parseInt((completed/recordsChunks.length) * 100) + '%';
-							if (data)
-								$('#progress').css({ width: text}).text(text);
-						});
-					});
+								{ record: JSON.stringify(element) }, 
+							function (data) {
+								completed++;
+								var text = parseInt((completed/records.length) * 100) + '%';
+								if (data)
+									$('#progress').css({ width: text}).text(text);
+
+								if (text !== '100%') {
+									addRecord(records[completed]);
+								}
+							});
+					}
+
+					addRecord(records[completed]);
 
 				};
 				reader.readAsBinaryString(f);

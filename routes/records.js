@@ -145,7 +145,7 @@ router.post('/edit/save', auth, function(req, res) {
 					req.flash("success", res.__("records.updated", { name: record.name }));
 				}
 				res.redirect('/records');
-			});	
+			});   
 		}
 	});
 });
@@ -202,5 +202,100 @@ router.get('/user/:id', function (req, res) {
 		}
 	});
 });
+
+router.get('/batch', auth, function (req, res) {
+	res.render('records/batch');
+});
+
+router.get('/batch/add', auth, function(req, res) {
+	var records = JSON.parse(req.query['records']);
+
+	function makeIterator(array){
+		var nextIndex = 0;
+		
+		return {
+			next: function(){
+				return nextIndex < array.length ?
+					{value: array[nextIndex++], done: false} :
+					{done: true};
+			}
+		}
+	}
+
+	var iterator = makeIterator(records);
+
+	addRecord(iterator.next(), iterator, req, res);
+});
+
+function addRecord(record, iterator, req, res) {
+	if (record.done) return res.json(true);
+
+	element = record.value;
+	var pBand = fetchBand(req, element.band);
+	var pGenre = fetchGenre(req, element.genre);
+
+	Promise.all([pBand, pGenre]).then(function (bg) {
+		record = new Records({
+			name: element.name,
+			band: bg[0],
+			year: element.year,
+			label: element.label,
+			genre: bg[1],
+			number: element.number,
+			user: req.session.user._id
+		});
+		record.save(function (err, r) {
+			if (err) console.log("ERROR:  --> ", err);
+			return addRecord(iterator.next(), iterator, req, res);
+		});
+	});
+}
+
+function fetchBand(req, name) {
+	var promise = new Promise(function (resolve, reject) {
+		Bands.find({
+			name: { "$regex": name, "$options": "ig" }
+		}, function (err, band) {
+			if (err) console.log("ERROR in Bands:  --> ", err);
+			if (band.length) {
+				resolve(band[0])
+			} else {
+				newBand = new Bands({
+					name: name,
+					user: req.session.user
+				});
+				newBand.save(function (err, b) {
+					if (err) console.log("ERROR in new Bands:  --> ", err);
+					resolve(b);
+				});
+			}
+		});
+	});
+	return promise;
+};
+
+function fetchGenre(req, name) {
+	var promise = new Promise(function (resolve, reject) {
+		Genres.find({
+			name: { "$regex": name, "$options": "ig" }
+		}, function (err, genre) {
+			if (err) console.log("ERROR in Genres:  --> ", err);
+			if (genre.length) {
+				resolve(genre[0])
+			} else {
+				newGenre = new Genres({
+					name: name,
+					user: req.session.user
+				});
+				newGenre.save(function (err, g) {
+					if (err) console.log("ERROR in new Genres:  --> ", err);
+					resolve(g);
+				});
+			}
+		});
+
+	});
+	return promise;
+};
 
 module.exports = router;

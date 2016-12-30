@@ -64,5 +64,12 @@
 	"record.notfound": "Record not found",
 	"menu.statistics": "Statistics",
 	"statistics.recordsByBands": "Records by Bands",
-	"statistics.recordsByGenres": "Records by Genres"
+	"statistics.recordsByGenres": "Records by Genres",
+	"menu.tracks": "Tracks",
+	"tracks.name": "Track name",
+	"tracks.empty": "Track list is empty for you &#9785;",
+	"tracks.records": "Record",
+	"tracks.added": "Track {{name}} successfully added!",
+	"tracks.deleted": "Track was successfully removed.",
+	"tracks.updated": "Track {{name}} successfully updated!"
 }

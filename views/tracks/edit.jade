@@ -1,0 +1,18 @@
+extends ./_form
+
+block prepend form-for
+	form(action="save", method="post")
+		input(type="hidden", name="track.id", value=track.id)
+		.row
+			.col-lg-6
+				h4 #{__("tracks.name")}
+				input.form-control(type='text', name="track.name", value=track.name)
+			.col-lg-3
+				h4 #{__("tracks.records")}
+				select.form-control(name="track.record")
+					each record in records
+						option(value=record.id, selected= record.id == track.record) !{ record.name }
+
+			.row.last
+				.col-lg-12
+					button.pull-right.btn.btn-success(type='submit') #{__("system.edit")}

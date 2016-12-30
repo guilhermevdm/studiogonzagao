@@ -1,0 +1,17 @@
+extends ./_form
+
+block prepend form-for
+	form(action="add", method="post")
+		.row
+			.col-lg-6
+				h4 #{__("tracks.name")}
+				input.form-control(type='text', name="track.name", required)
+			.col-lg-3
+				h4 #{__("tracks.records")}
+				select.form-control(name="track.record", required)
+					each record in records
+						option(value=record.id) !{ record.name }
+
+			.row.last
+				.col-lg-12
+					button.pull-right.btn.btn-success(type='submit') #{__("system.add")}

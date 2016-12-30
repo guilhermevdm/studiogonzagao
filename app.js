@@ -16,6 +16,7 @@ var indexController = require('./routes/index');
 var userController = require('./routes/users');
 var loginController = require('./routes/login');
 var bandsController = require('./routes/bands');
+var tracksController = require('./routes/tracks');
 var genresController = require('./routes/genres');
 var recordsController = require('./routes/records');
 var statisticsController = require('./routes/statistics');
@@ -68,7 +69,7 @@ app.use('/bands', bandsController);
 app.use('/genres', genresController);
 app.use('/records', recordsController);
 app.use('/statistics', statisticsController);
-
+app.use('/tracks', tracksController);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

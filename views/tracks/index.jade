@@ -1,0 +1,36 @@
+extends ../layout/layout
+
+block content
+	.container
+		.row
+			.col-xs-6
+				h2 #{__("menu.tracks")}
+			.col-xs-6.text-right
+				h2
+					a.btn.btn-success(href='/tracks/add') #{__("system.add")}
+		.row
+			.col-xs-12
+				table.table.table-bordered.table-striped.table-hover.table-responsive
+					thead
+						tr
+							th #{__("tracks.name")}
+							th #{__("tracks.records")}
+							th #{__("system.actions")}
+					tbody
+						if tracks.length == 0
+							tr
+								td(colspan="4")
+									p.text-center !{__("tracks.empty")}
+						each track in tracks
+							tr
+								td !{ track.name }
+								td !{ track.record.name }
+								td
+									a.btn.btn-link(href="tracks/edit/" + track.id)
+										span.glyphicon.glyphicon-edit(aria-hidden='true')
+									
+									form.action.form-inline(action="tracks/delete", method="post")
+										input(type="hidden", value=track.id name="track.id")
+										button.btn.btn-link(type="submit")
+											span.glyphicon.glyphicon-trash(aria-hidden='true')
+

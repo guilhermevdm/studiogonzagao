@@ -1,2 +1,6 @@
 node_modules
 *.log
+load-test/
+aws-*
+*.pem
+ecosystem.json

@@ -2,9 +2,8 @@ var mongoose = require ("mongoose");
 var mongooseCachebox = require("mongoose-cachebox");
 
 var uristring =
-    process.env.MONGOLAB_URI ||
-    process.env.MONGOHQ_URL || 
-    "mongodb://localhost/sgonzagao";
+    process.env.DATABASE_URI ||
+    "mongodb://192.168.99.100/sgonzagao";
 
 mongoose.connect(uristring, function (err, res) {
   if (err) {

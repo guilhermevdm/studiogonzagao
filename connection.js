@@ -3,7 +3,7 @@ var mongooseCachebox = require("mongoose-cachebox");
 
 var uristring =
     process.env.DATABASE_URI ||
-    "mongodb://192.168.99.100/sgonzagao";
+    "mongodb://172.31.31.0/sgonzagao";
 
 mongoose.connect(uristring, function (err, res) {
   if (err) {

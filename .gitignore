@@ -1,6 +1,9 @@
+.DS_Store
 node_modules
 *.log
 load-test/
 aws-*
+appc4xlarge
+dbm4large
 *.pem
 ecosystem.json

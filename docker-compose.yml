@@ -1,7 +1,17 @@
 version: '2'
 services:
-  database:
-    container_name: database
+  web:
+    build: .
+    image: studiogonzagao
+    ports:
+      - "3000:3000"
+    links:
+      - db
+    environment:
+      DB_URI: "mongodb://db/sgonzagao"
+      NODE_ENV: "production"
+  db:
     image: mongo:latest
     ports:
       - "27017:27017"
+  
